@@ -1,15 +1,27 @@
 ﻿
 static class Helper
 {
-    public static void PlayGame()
+    public static string PlayGame()
     {
         var targetDate = SetTargetDate();
         var userGuess = GuessAmountOfDays(targetDate);
-        var dayDifference = GetDateDifference(targetDate, userGuess);
+        var dayDifference = GetDateDifferenceFromUsersGuess(targetDate, userGuess);
+        return DisplayResults(dayDifference, targetDate, userGuess);
     }
 
-    private static int GetDateDifference(DateOnly targetDate, int userGuess) =>
-        DateOnly.FromDateTime(DateTime.Today.AddDays(userGuess)).DayNumber - targetDate.DayNumber;
+    private static string DisplayResults(int dayDifference, DateOnly targetDate, int userGuess)
+    {
+
+        return dayDifference >= -5 && dayDifference <= 5
+                ? $"You won! The difference between {targetDate} and today is {GetDateDifferenceFromTargetAndToday(targetDate)} days."
+                : $"Sorry, You lost. The difference was {dayDifference} days.";
+    }
+
+    private static int GetDateDifferenceFromUsersGuess(DateOnly targetDate, int userGuess) =>
+        targetDate.DayNumber - DateOnly.FromDateTime(DateTime.Today.AddDays(userGuess)).DayNumber;
+
+    private static int GetDateDifferenceFromTargetAndToday(DateOnly targetDate) =>
+        targetDate.DayNumber - DateOnly.FromDateTime(DateTime.Today).DayNumber;
 
     private static int GuessAmountOfDays(DateOnly targetDate)
     {
