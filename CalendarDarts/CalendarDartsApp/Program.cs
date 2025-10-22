@@ -1,17 +1,15 @@
-﻿var userGuess = Helper.PlayGame();
-
-Console.WriteLine(userGuess);
-
-Console.ReadLine();
-
+﻿
 static class Helper
 {
-    public static int PlayGame()
+    public static void PlayGame()
     {
         var targetDate = SetTargetDate();
         var userGuess = GuessAmountOfDays(targetDate);
-        return userGuess;
+        var dayDifference = GetDateDifference(targetDate, userGuess);
     }
+
+    private static int GetDateDifference(DateOnly targetDate, int userGuess) =>
+        DateOnly.FromDateTime(DateTime.Today.AddDays(userGuess)).DayNumber - targetDate.DayNumber;
 
     private static int GuessAmountOfDays(DateOnly targetDate)
     {
