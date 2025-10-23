@@ -32,8 +32,6 @@ This project demonstrates fundamental C# concepts including:
 - `Program.cs` - Entry point and replay loop.
 - `Helper.cs` - Static class containing:
      - `PlayGame()` - Conductor method for calling private methods.
-     - `SetTargetDate()` - Generates a random date.
      - `GuessAmountOfDays()` - Handles User Input.
-     - `GetDateDifferenceFromUsersGuess()` - Generates a DateOnly Object using Today + Users Guess.
-     - `GetDateDifferenceFromTargetAndToday()` - Gets correct number of days between Today and Target Date.
+     - `GetNewDate()` - Returns a new date based on amount of days added to it.
      - `DisplayResults()` - Prints win/loss messages.
